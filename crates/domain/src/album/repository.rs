@@ -16,7 +16,7 @@ impl<'a> AlbumRepo<'a> {
     }
 
     pub async fn get_by_id(&self, id: &str) -> DbResult<Option<AlbumModel>> {
-        let album = sqlx::query_as::<_, AlbumModel>(
+        let maybe_album = sqlx::query_as::<_, AlbumModel>(
             r#"
                 SELECT albums.* 
                 FROM albums 
@@ -29,7 +29,7 @@ impl<'a> AlbumRepo<'a> {
         .fetch_optional(self.conn.deref())
         .await?;
 
-        Ok(album)
+        Ok(maybe_album)
     }
 
     pub async fn insert_one(
