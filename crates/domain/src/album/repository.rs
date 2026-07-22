@@ -55,13 +55,13 @@ impl<'a> AlbumRepo<'a> {
             "#,
         )
         .bind(&id)
-        .bind(&created_at)
+        .bind(created_at)
         .bind(&created_by)
-        .bind(&updated_at)
+        .bind(updated_at)
         .bind(&updated_by)
         .bind(&album_type)
         .bind(&title)
-        .bind(&release_date)
+        .bind(release_date)
         .fetch_one(self.conn.deref())
         .await?;
 

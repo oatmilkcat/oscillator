@@ -1,4 +1,4 @@
-use axum::{Router, ServiceExt, routing::get};
+use axum::{Router, routing::get};
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::EnvFilter;
 use utoipa::OpenApi;

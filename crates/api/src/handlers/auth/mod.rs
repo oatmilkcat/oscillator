@@ -4,7 +4,6 @@ use axum::{Json, Router, routing::post};
 use axum_valid::Valid;
 use regex::Regex;
 use serde::Deserialize;
-use utoipa::openapi::ServerVariableBuilder;
 use validator::{Validate, ValidationError};
 
 use crate::{ApiResult, errors::ApiError};
@@ -18,7 +17,7 @@ pub fn router() -> Router {
 const USERNAME_REGEX: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"^[a-zA-Z0-9][a-zA-Z0-9-_.]*$").unwrap());
 
-fn validate_password(password: &str) -> Result<(), ValidationError> {
+fn validate_password(_password: &str) -> Result<(), ValidationError> {
     // TODO
     Ok(())
 }
@@ -32,7 +31,7 @@ struct AuthenticateRequest {
     password: String,
 }
 
-async fn authenticate(Valid(body): Valid<Json<AuthenticateRequest>>) -> ApiResult<&'static str> {
+async fn authenticate(Valid(_body): Valid<Json<AuthenticateRequest>>) -> ApiResult<&'static str> {
     Err(ApiError::Unauthorized)
 }
 
@@ -51,6 +50,6 @@ struct RegisterRequest {
     password: String,
 }
 
-async fn register(Valid(body): Valid<Json<RegisterRequest>>) -> ApiResult<&'static str> {
+async fn register(Valid(_body): Valid<Json<RegisterRequest>>) -> ApiResult<&'static str> {
     Err(ApiError::Unauthorized)
 }

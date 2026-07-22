@@ -29,6 +29,6 @@ impl ApiError {
 
 impl IntoResponse for ApiError {
     fn into_response(self) -> axum::response::Response {
-        return (self.status_code(), self.to_string()).into_response();
+        (self.status_code(), self.to_string()).into_response()
     }
 }
