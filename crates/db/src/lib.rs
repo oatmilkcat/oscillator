@@ -1,1 +1,2 @@
-mod connection;
+pub mod connection;
+pub use connection::Connection;

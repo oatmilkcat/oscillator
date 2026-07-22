@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+argon2 = "0.5.3"
 axum = { version = "0.8.9", features = ["macros", "json"] }
-axum-valid = "0.25.0"
+axum-valid = { version = "0.25.0", features = ["into_json"] }
 log = "0.4.33"
 regex = "1.13.1"
 serde = { version = "1.0.228", features = ["derive"] }

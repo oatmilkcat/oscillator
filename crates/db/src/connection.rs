@@ -25,10 +25,12 @@ impl DerefMut for Connection {
 const MAX_CONNECTIONS: u32 = 5;
 
 /// Constructs a connection pool with the provided connection string and returns it
-pub async fn get_connection(conn_str: &str) -> Pool<Postgres> {
-    PgPoolOptions::new()
-        .max_connections(MAX_CONNECTIONS)
-        .connect(conn_str)
-        .await
-        .unwrap()
+pub async fn get_connection(conn_str: &str) -> Connection {
+    Connection(
+        PgPoolOptions::new()
+            .max_connections(MAX_CONNECTIONS)
+            .connect(conn_str)
+            .await
+            .unwrap(),
+    )
 }

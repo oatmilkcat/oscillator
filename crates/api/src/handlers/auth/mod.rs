@@ -38,6 +38,12 @@ async fn authenticate(Valid(body): Valid<Json<AuthenticateRequest>>) -> ApiResul
 
 #[derive(Debug, Deserialize, Validate)]
 struct RegisterRequest {
+    #[validate(length(max = 30))]
+    display_name: Option<String>,
+
+    #[validate(email)]
+    email: String,
+
     #[validate(length(min = 1, max = 20), regex(path = *USERNAME_REGEX))]
     username: String,
 
